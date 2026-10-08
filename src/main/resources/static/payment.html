@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Payment - Vehicle Rental System</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link
+        rel="stylesheet"
+        href="css/style.css">
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+        <div class="container">
+
+            <a
+                class="navbar-brand fw-bold"
+                href="index.html">
+
+                Vehicle Rental
+
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- Header -->
+    <section class="bg-primary text-white py-5">
+
+        <div class="container text-center">
+
+            <h1 class="fw-bold">
+                Payment
+            </h1>
+
+            <p class="mb-0">
+                Complete your payment to confirm your booking.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- Payment Section -->
+    <section class="container py-5">
+
+        <div class="row justify-content-center">
+
+            <div class="col-md-7 col-lg-5">
+
+                <div class="card shadow-sm">
+
+                    <div class="card-body p-4 p-md-5">
+
+                        <div
+                            id="errorMessage"
+                            class="alert alert-danger d-none">
+                        </div>
+
+
+                        <div
+                            id="successMessage"
+                            class="alert alert-success d-none">
+                        </div>
+
+
+                        <!-- Booking Information -->
+                        <h4 class="fw-bold mb-4">
+                            Booking Summary
+                        </h4>
+
+
+                        <div class="card bg-light mb-4">
+
+                            <div class="card-body">
+
+                                <div
+                                    class="d-flex justify-content-between mb-2">
+
+                                    <span>
+                                        Booking ID
+                                    </span>
+
+                                    <strong id="bookingId">
+                                        -
+                                    </strong>
+
+                                </div>
+
+
+                                <div
+                                    class="d-flex justify-content-between mb-2">
+
+                                    <span>
+                                        Vehicle
+                                    </span>
+
+                                    <strong id="vehicleName">
+                                        Loading...
+                                    </strong>
+
+                                </div>
+
+
+                                <div
+                                    class="d-flex justify-content-between mb-2">
+
+                                    <span>
+                                        Start Date
+                                    </span>
+
+                                    <strong id="startDate">
+                                        -
+                                    </strong>
+
+                                </div>
+
+
+                                <div
+                                    class="d-flex justify-content-between mb-2">
+
+                                    <span>
+                                        End Date
+                                    </span>
+
+                                    <strong id="endDate">
+                                        -
+                                    </strong>
+
+                                </div>
+
+
+                                <hr>
+
+
+                                <div
+                                    class="d-flex justify-content-between">
+
+                                    <span class="fw-bold">
+                                        Total Amount
+                                    </span>
+
+                                    <strong
+                                        id="totalAmount"
+                                        class="text-primary fs-4">
+
+                                        ₹0
+
+                                    </strong>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Payment Information -->
+                        <h5 class="fw-bold mb-3">
+                            Payment Method
+                        </h5>
+
+
+                        <div class="mb-3">
+
+                            <label
+                                for="paymentMethod"
+                                class="form-label">
+
+                                Select Payment Method
+
+                            </label>
+
+
+                            <select
+                                id="paymentMethod"
+                                class="form-select">
+
+                                <option value="CARD">
+                                    Credit / Debit Card
+                                </option>
+
+                                <option value="UPI">
+                                    UPI
+                                </option>
+
+                                <option value="CASH">
+                                    Cash
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <!-- Simulated Payment Notice -->
+                        <div class="alert alert-info">
+
+                            <strong>
+                                Demo Payment
+                            </strong>
+
+                            <br>
+
+                            This project uses a simulated payment.
+                            No real money will be charged.
+
+                        </div>
+
+
+                        <!-- Pay Button -->
+                        <button
+                            id="payButton"
+                            class="btn btn-success w-100">
+
+                            Pay Now
+
+                        </button>
+
+
+                        <!-- Back Button -->
+                        <a
+                            href="vehicles.html"
+                            class="btn btn-outline-secondary w-100 mt-2">
+
+                            Back to Vehicles
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-4">
+
+        <div class="container">
+
+            <p class="mb-0">
+                © 2026 Vehicle Rental System
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <!-- Bootstrap JavaScript -->
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+    </script>
+
+
+    <!-- Payment JavaScript -->
+    <script>
+
+        /*
+         * ==========================================
+         * GET BOOKING ID
+         * ==========================================
+         */
+
+        const bookingId =
+            sessionStorage.getItem(
+                "bookingId"
+            );
+
+
+        /*
+         * ==========================================
+         * HTML ELEMENTS
+         * ==========================================
+         */
+
+        const bookingIdElement =
+            document.getElementById(
+                "bookingId"
+            );
+
+
+        const vehicleNameElement =
+            document.getElementById(
+                "vehicleName"
+            );
+
+
+        const startDateElement =
+            document.getElementById(
+                "startDate"
+            );
+
+
+        const endDateElement =
+            document.getElementById(
+                "endDate"
+            );
+
+
+        const totalAmountElement =
+            document.getElementById(
+                "totalAmount"
+            );
+
+
+        const paymentMethod =
+            document.getElementById(
+                "paymentMethod"
+            );
+
+
+        const payButton =
+            document.getElementById(
+                "payButton"
+            );
+
+
+        const errorMessage =
+            document.getElementById(
+                "errorMessage"
+            );
+
+
+        const successMessage =
+            document.getElementById(
+                "successMessage"
+            );
+
+
+        /*
+         * ==========================================
+         * LOAD BOOKING
+         * ==========================================
+         */
+
+        async function loadBooking() {
+
+            /*
+             * Check booking ID
+             */
+            if (!bookingId) {
+
+                showError(
+                    "No booking found. Please create a booking first."
+                );
+
+                payButton.disabled =
+                    true;
+
+                return;
+
+            }
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        "/api/bookings/" +
+                        bookingId
+                    );
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        "Unable to load booking."
+                    );
+
+                }
+
+
+                const booking =
+                    await response.json();
+
+
+                /*
+                 * Display booking details
+                 */
+                bookingIdElement.textContent =
+                    booking.id;
+
+
+                vehicleNameElement.textContent =
+                    booking.vehicle
+                    ? booking.vehicle.name
+                    : "Unknown";
+
+
+                startDateElement.textContent =
+                    booking.startDate;
+
+
+                endDateElement.textContent =
+                    booking.endDate;
+
+
+                totalAmountElement.textContent =
+                    "₹" +
+                    booking.totalAmount;
+
+
+                /*
+                 * Check payment status
+                 */
+                if (
+                    booking.paymentStatus ===
+                    "PAID"
+                ) {
+
+                    showError(
+                        "Payment for this booking has already been completed."
+                    );
+
+                    payButton.disabled =
+                        true;
+
+                }
+
+            }
+
+            catch (error) {
+
+                showError(
+                    error.message
+                );
+
+                payButton.disabled =
+                    true;
+
+            }
+
+        }
+
+
+        /*
+         * ==========================================
+         * MAKE PAYMENT
+         * ==========================================
+         */
+
+        payButton.addEventListener(
+            "click",
+            async function() {
+
+                /*
+                 * Clear messages
+                 */
+                errorMessage.classList.add(
+                    "d-none"
+                );
+
+
+                successMessage.classList.add(
+                    "d-none"
+                );
+
+
+                /*
+                 * Check booking ID
+                 */
+                if (!bookingId) {
+
+                    showError(
+                        "Booking ID is missing."
+                    );
+
+                    return;
+
+                }
+
+
+                /*
+                 * Disable button
+                 */
+                payButton.disabled =
+                    true;
+
+
+                payButton.textContent =
+                    "Processing Payment...";
+
+
+                try {
+
+                    /*
+                     * Send payment request
+                     */
+                    const response =
+                        await fetch(
+                            "/api/payments/" +
+                            bookingId,
+                            {
+                                method: "POST"
+                            }
+                        );
+
+
+                    /*
+                     * Handle error
+                     */
+                    if (!response.ok) {
+
+                        const errorText =
+                            await response.text();
+
+
+                        throw new Error(
+                            errorText ||
+                            "Payment failed."
+                        );
+
+                    }
+
+
+                    /*
+                     * Get updated booking
+                     */
+                    const booking =
+                        await response.json();
+
+
+                    /*
+                     * Verify payment
+                     */
+                    if (
+                        booking.paymentStatus !==
+                        "PAID"
+                    ) {
+
+                        throw new Error(
+                            "Payment was not completed."
+                        );
+
+                    }
+
+
+                    /*
+                     * Show success
+                     */
+                    successMessage.innerHTML = `
+
+                        <strong>
+                            Payment successful!
+                        </strong>
+
+                        <br>
+
+                        Booking #${booking.id}
+                        is now confirmed.
+
+                    `;
+
+
+                    successMessage.classList.remove(
+                        "d-none"
+                    );
+
+
+                    /*
+                     * Update button
+                     */
+                    payButton.textContent =
+                        "Payment Completed";
+
+
+                    /*
+                     * Redirect to confirmation
+                     */
+                    setTimeout(
+                        function() {
+
+                            window.location.href =
+                                "booking-confirmation.html?bookingId=" +
+                                booking.id;
+
+                        },
+                        1500
+                    );
+
+                }
+
+                catch (error) {
+
+                    showError(
+                        error.message
+                    );
+
+
+                    payButton.disabled =
+                        false;
+
+
+                    payButton.textContent =
+                        "Pay Now";
+
+                }
+
+            }
+        );
+
+
+        /*
+         * ==========================================
+         * SHOW ERROR
+         * ==========================================
+         */
+
+        function showError(message) {
+
+            errorMessage.textContent =
+                message;
+
+
+            errorMessage.classList.remove(
+                "d-none"
+            );
+
+        }
+
+
+        /*
+         * ==========================================
+         * START
+         * ==========================================
+         */
+
+        loadBooking();
+
+    </script>
+
+</body>
+
+</html>

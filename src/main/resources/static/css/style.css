@@ -1,0 +1,54 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+}
+
+
+/* Navigation */
+.navbar-brand {
+    font-size: 1.4rem;
+}
+
+
+/* Hero Section */
+.hero-section {
+    min-height: 500px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: linear-gradient(
+        rgba(0, 0, 0, 0.65),
+        rgba(0, 0, 0, 0.65)
+    ),
+    url("https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1600&q=80");
+
+    background-size: cover;
+    background-position: center;
+
+    color: white;
+}
+
+
+/* Feature Cards */
+.feature-card {
+    border: none;
+    transition: transform 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-8px);
+}
+
+
+/* Buttons */
+.btn {
+    border-radius: 6px;
+}
+
+
+/* Footer */
+footer {
+    margin-top: 40px;
+}

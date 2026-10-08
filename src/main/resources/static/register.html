@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Register - Vehicle Rental System</title>
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+        <div class="container">
+
+            <a class="navbar-brand fw-bold" href="index.html">
+                Vehicle Rental
+            </a>
+
+            <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarMenu">
+
+                <span class="navbar-toggler-icon"></span>
+
+            </button>
+
+            <div
+                class="collapse navbar-collapse"
+                id="navbarMenu">
+
+                <ul class="navbar-nav ms-auto">
+
+                    <li class="nav-item">
+                        <a
+                            class="nav-link"
+                            href="index.html">
+                            Home
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a
+                            class="nav-link"
+                            href="vehicles.html">
+                            Vehicles
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a
+                            class="nav-link"
+                            href="login.html">
+                            Login
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a
+                            class="btn btn-primary ms-lg-2 active"
+                            href="register.html">
+                            Register
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+
+    <!-- Registration Section -->
+    <section class="container py-5">
+
+        <div class="row justify-content-center">
+
+            <div class="col-md-7 col-lg-6">
+
+                <div class="card shadow-sm">
+
+                    <div class="card-body p-4 p-md-5">
+
+                        <div class="text-center mb-4">
+
+                            <h2 class="fw-bold">
+                                Create Account
+                            </h2>
+
+                            <p class="text-muted">
+                                Register to start renting vehicles.
+                            </p>
+
+                        </div>
+
+
+                        <!-- Success Message -->
+                        <div
+                            id="successMessage"
+                            class="alert alert-success d-none"
+                            role="alert">
+                        </div>
+
+
+                        <!-- Error Message -->
+                        <div
+                            id="errorMessage"
+                            class="alert alert-danger d-none"
+                            role="alert">
+                        </div>
+
+
+                        <!-- Registration Form -->
+                        <form id="registerForm">
+
+                            <!-- Name -->
+                            <div class="mb-3">
+
+                                <label
+                                    for="name"
+                                    class="form-label">
+                                    Full Name
+                                </label>
+
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="name"
+                                    placeholder="Enter your full name"
+                                    required>
+
+                            </div>
+
+
+                            <!-- Email -->
+                            <div class="mb-3">
+
+                                <label
+                                    for="email"
+                                    class="form-label">
+                                    Email Address
+                                </label>
+
+                                <input
+                                    type="email"
+                                    class="form-control"
+                                    id="email"
+                                    placeholder="Enter your email"
+                                    required>
+
+                            </div>
+
+
+                            <!-- Phone -->
+                            <div class="mb-3">
+
+                                <label
+                                    for="phone"
+                                    class="form-label">
+                                    Phone Number
+                                </label>
+
+                                <input
+                                    type="tel"
+                                    class="form-control"
+                                    id="phone"
+                                    placeholder="Enter your phone number"
+                                    maxlength="10"
+                                    required>
+
+                            </div>
+
+
+                            <!-- Password -->
+                            <div class="mb-3">
+
+                                <label
+                                    for="password"
+                                    class="form-label">
+                                    Password
+                                </label>
+
+                                <input
+                                    type="password"
+                                    class="form-control"
+                                    id="password"
+                                    placeholder="Enter your password"
+                                    required>
+
+                            </div>
+
+
+                            <!-- Confirm Password -->
+                            <div class="mb-3">
+
+                                <label
+                                    for="confirmPassword"
+                                    class="form-label">
+                                    Confirm Password
+                                </label>
+
+                                <input
+                                    type="password"
+                                    class="form-control"
+                                    id="confirmPassword"
+                                    placeholder="Re-enter your password"
+                                    required>
+
+                            </div>
+
+
+                            <!-- Register Button -->
+                            <button
+                                type="submit"
+                                id="registerButton"
+                                class="btn btn-primary w-100 mt-3">
+
+                                Register
+
+                            </button>
+
+                        </form>
+
+
+                        <!-- Login Link -->
+                        <div class="text-center mt-4">
+
+                            <p class="mb-0">
+
+                                Already have an account?
+
+                                <a href="login.html">
+                                    Login here
+                                </a>
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-4">
+
+        <div class="container">
+
+            <p class="mb-0">
+                © 2026 Vehicle Rental System
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <!-- Bootstrap JavaScript -->
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+    </script>
+
+
+    <!-- Registration JavaScript -->
+    <script>
+
+        const registerForm =
+            document.getElementById("registerForm");
+
+        const successMessage =
+            document.getElementById("successMessage");
+
+        const errorMessage =
+            document.getElementById("errorMessage");
+
+        const registerButton =
+            document.getElementById("registerButton");
+
+
+        registerForm.addEventListener("submit", async function(event) {
+
+            event.preventDefault();
+
+
+            // Get form values
+            const name =
+                document.getElementById("name").value.trim();
+
+            const email =
+                document.getElementById("email").value.trim();
+
+            const phone =
+                document.getElementById("phone").value.trim();
+
+            const password =
+                document.getElementById("password").value;
+
+            const confirmPassword =
+                document.getElementById("confirmPassword").value;
+
+
+            // Clear previous messages
+            successMessage.classList.add("d-none");
+            errorMessage.classList.add("d-none");
+
+
+            // Check password
+            if (password !== confirmPassword) {
+
+                errorMessage.textContent =
+                    "Passwords do not match.";
+
+                errorMessage.classList.remove("d-none");
+
+                return;
+            }
+
+
+            // Check phone number
+            if (!/^[0-9]{10}$/.test(phone)) {
+
+                errorMessage.textContent =
+                    "Please enter a valid 10-digit phone number.";
+
+                errorMessage.classList.remove("d-none");
+
+                return;
+            }
+
+
+            // Disable button while registering
+            registerButton.disabled = true;
+
+            registerButton.textContent =
+                "Registering...";
+
+
+            try {
+
+                const response = await fetch(
+                    "/api/auth/register",
+                    {
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+
+                        body: JSON.stringify({
+                            name: name,
+                            email: email,
+                            phone: phone,
+                            password: password
+                        })
+                    }
+                );
+
+
+                const result = await response.text();
+
+
+                if (!response.ok) {
+
+                    throw new Error(result);
+
+                }
+
+
+                // Registration successful
+                successMessage.textContent =
+                    "Registration successful! Redirecting to login...";
+
+                successMessage.classList.remove("d-none");
+
+
+                registerForm.reset();
+
+
+                // Redirect to login page after 2 seconds
+                setTimeout(function() {
+
+                    window.location.href = "login.html";
+
+                }, 2000);
+
+
+            } catch (error) {
+
+                errorMessage.textContent =
+                    error.message ||
+                    "Registration failed. Please try again.";
+
+                errorMessage.classList.remove("d-none");
+
+            } finally {
+
+                registerButton.disabled = false;
+
+                registerButton.textContent =
+                    "Register";
+
+            }
+
+        });
+
+    </script>
+
+</body>
+
+</html>
