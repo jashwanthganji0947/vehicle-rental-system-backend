@@ -21,24 +21,48 @@ public class AdminDataInitializer {
             String adminEmail = "jashwanthganji@gmail.com";
             String adminPassword = "Admin@123";
 
-            if (!userRepository.existsByEmail(adminEmail)) {
+            boolean resetExistingAdmin = Boolean.parseBoolean(
+                    System.getenv("RESET_ADMIN_CREDENTIALS")
+            );
 
-                User admin = new User();
+            User admin = userRepository
+                    .findByEmail(adminEmail)
+                    .orElse(null);
 
+            if (admin == null) {
+
+                admin = new User();
                 admin.setName("Admin");
                 admin.setEmail(adminEmail);
                 admin.setPhone("9999999999");
-
                 admin.setPassword(
                         passwordEncoder.encode(adminPassword)
                 );
-
                 admin.setRole("ADMIN");
 
                 userRepository.save(admin);
 
                 System.out.println(
                         "Admin account created successfully"
+                );
+
+            } else if (resetExistingAdmin) {
+
+                admin.setPassword(
+                        passwordEncoder.encode(adminPassword)
+                );
+                admin.setRole("ADMIN");
+
+                userRepository.save(admin);
+
+                System.out.println(
+                        "Existing admin password and role updated"
+                );
+
+            } else {
+
+                System.out.println(
+                        "Admin account already exists; no changes made"
                 );
             }
         };
